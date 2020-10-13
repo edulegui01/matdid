@@ -20,7 +20,7 @@ const Sidebar = (props) =>{
                 <li style={{height:'56px'}}>
                     <ButtonMenu click={props.showSidebar}/>
                     <div className="logo">
-                    <a className="text-dark" style={{textDecoration:'none'}}><img src={logo} style={{height:'50px'}}/></a>
+                    <a className="text-dark" style={{textDecoration:'none'}}><img src={logo} /></a>
                     </div>
                 </li>
                 <li >

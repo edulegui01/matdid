@@ -3,11 +3,12 @@
     width: 13%;
     top:0;
     left: 0;
+    background-color: white;
 }
 
 .sidebar.active{
     left: -100%;
-    transition: 250ms;
+    /* transition: 250ms; */
     
 }
 
@@ -61,12 +62,15 @@
 
 .logo{
       
-    text-align: center;
+    /* text-align: center;
     line-height: 56px;
     margin-left: 10px;
-    font-size: 0.9rem;  
+    font-size: 0.9rem; */
+    height: 43px;  
 }
-
+img{
+    height: 100%;
+}
 .icons{
     
     margin: 0 5px 5px 0;
