@@ -1,0 +1,13 @@
+.button-menu{
+    font-size: 1.5rem;
+    color: dimgray;
+    border: none;
+    background-color: transparent;
+    top:10px;
+    padding: 0 0.7rem 0 0.7rem;
+}
+
+
+.button-menu:focus{
+    border: none;
+}
