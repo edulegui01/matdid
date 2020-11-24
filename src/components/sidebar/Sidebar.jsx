@@ -37,9 +37,6 @@ const Sidebar = (props) =>{
                     <a href=""><BsGraphUp className="icons"/>Ventas</a>
                 </li>
                 <li>
-                    <a href=""><AiOutlineArrowRight className="icons"/>Salidas</a>
-                </li>
-                <li>
                     <a href=""><FaFileInvoiceDollar className="icons"/>Pagos</a>
                 </li>
                 <li>
@@ -47,6 +44,9 @@ const Sidebar = (props) =>{
                 </li>
                 <li>
                     <span>ADMINISTRACION</span>
+                </li>
+                <li>
+                    <a href=""><FiUsers className="icons"/>Usuarios</a>
                 </li>
                 <li>
                     <a href=""><FiUsers className="icons"/>Empleados</a>
