@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/matdid/static/css/main.db22e019.chunk.css",
+    "main.js": "/matdid/static/js/main.1e6299b9.chunk.js",
+    "main.js.map": "/matdid/static/js/main.1e6299b9.chunk.js.map",
+    "runtime-main.js": "/matdid/static/js/runtime-main.34150561.js",
+    "runtime-main.js.map": "/matdid/static/js/runtime-main.34150561.js.map",
+    "static/js/2.d97bf249.chunk.js": "/matdid/static/js/2.d97bf249.chunk.js",
+    "static/js/2.d97bf249.chunk.js.map": "/matdid/static/js/2.d97bf249.chunk.js.map",
+    "index.html": "/matdid/index.html",
+    "precache-manifest.070b47de7c01d0e876dece60449538a3.js": "/matdid/precache-manifest.070b47de7c01d0e876dece60449538a3.js",
+    "service-worker.js": "/matdid/service-worker.js",
+    "static/css/main.db22e019.chunk.css.map": "/matdid/static/css/main.db22e019.chunk.css.map",
+    "static/js/2.d97bf249.chunk.js.LICENSE.txt": "/matdid/static/js/2.d97bf249.chunk.js.LICENSE.txt",
+    "static/media/logo.png": "/matdid/static/media/logo.6c165586.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.34150561.js",
+    "static/js/2.d97bf249.chunk.js",
+    "static/css/main.db22e019.chunk.css",
+    "static/js/main.1e6299b9.chunk.js"
+  ]
+}
