@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f4dfebaa6f48d339a4d58e6163bf9a43",
+    "revision": "70b6c1f778229ebef8d6d0733fd3f1df",
     "url": "/matdid/index.html"
   },
   {
-    "revision": "8796fcc20f212c740dfe",
+    "revision": "9f78503e9fcc9ab74bb2",
     "url": "/matdid/static/css/main.723c6696.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/matdid/static/js/2.d91022d9.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "8796fcc20f212c740dfe",
-    "url": "/matdid/static/js/main.3aaa26b6.chunk.js"
+    "revision": "9f78503e9fcc9ab74bb2",
+    "url": "/matdid/static/js/main.ca32c283.chunk.js"
   },
   {
     "revision": "ff0d830546cca69e994a",
