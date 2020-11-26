@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/matdid/static/css/main.723c6696.chunk.css",
-    "main.js": "/matdid/static/js/main.1dcf45a4.chunk.js",
-    "main.js.map": "/matdid/static/js/main.1dcf45a4.chunk.js.map",
+    "main.js": "/matdid/static/js/main.3aaa26b6.chunk.js",
+    "main.js.map": "/matdid/static/js/main.3aaa26b6.chunk.js.map",
     "runtime-main.js": "/matdid/static/js/runtime-main.34150561.js",
     "runtime-main.js.map": "/matdid/static/js/runtime-main.34150561.js.map",
     "static/js/2.d91022d9.chunk.js": "/matdid/static/js/2.d91022d9.chunk.js",
     "static/js/2.d91022d9.chunk.js.map": "/matdid/static/js/2.d91022d9.chunk.js.map",
     "index.html": "/matdid/index.html",
-    "precache-manifest.6a5b7cbd821519853cefc49cff486324.js": "/matdid/precache-manifest.6a5b7cbd821519853cefc49cff486324.js",
+    "precache-manifest.4cd0f416ff899395c1af1d4307bf72f4.js": "/matdid/precache-manifest.4cd0f416ff899395c1af1d4307bf72f4.js",
     "service-worker.js": "/matdid/service-worker.js",
     "static/css/main.723c6696.chunk.css.map": "/matdid/static/css/main.723c6696.chunk.css.map",
     "static/js/2.d91022d9.chunk.js.LICENSE.txt": "/matdid/static/js/2.d91022d9.chunk.js.LICENSE.txt",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.34150561.js",
     "static/js/2.d91022d9.chunk.js",
     "static/css/main.723c6696.chunk.css",
-    "static/js/main.1dcf45a4.chunk.js"
+    "static/js/main.3aaa26b6.chunk.js"
   ]
 }
