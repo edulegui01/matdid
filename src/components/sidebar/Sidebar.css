@@ -8,7 +8,7 @@
 
 .sidebar.active{
     left: -100%;
-    /* transition: 250ms; */
+    
     
 }
 
@@ -35,7 +35,7 @@
    
 }
 
-.sidebar a{
+.link{
     width: 100%;
     text-align: center;
     text-decoration: none;
@@ -46,7 +46,7 @@
     
 }
 
-.sidebar a:hover{
+.link:hover{
     color: #0058ff;
     background-color: rgba(0,88,255,0.15)
 }
@@ -74,4 +74,5 @@ img{
 .icons{
     
     margin: 0 5px 5px 0;
+    text-align: left;
 }

@@ -1,0 +1,35 @@
+.main{
+    background-color: #DDDDDD;
+    position:fixed;
+    width:87%;
+    height:100%;
+    left: 13%;
+}
+
+.main.activate{
+    left: 0;
+    width: 100%;
+}
+
+
+
+.contain_content{
+    margin: 30px;
+    background-color: #fff;
+    
+}
+
+
+.contain_content h6{
+    background-color: #0058ff;
+    color:#fff;
+    padding: 5px;
+    margin: 0;
+    
+}
+
+
+.table_content{
+    background: #fff;
+    
+}

@@ -1,8 +1,8 @@
 import React from 'react'
-import {Link,BrowserRouter as Router} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import './Sidebar.css'
 import ButtonMenu from '../buttonMenu/ButtonMenu';
-import { AiOutlineHome,AiOutlineShoppingCart,AiOutlineArrowRight,AiFillShopping } from 'react-icons/ai';
+import { AiOutlineHome,AiOutlineShoppingCart,AiFillShopping } from 'react-icons/ai';
 import { BsGraphUp} from 'react-icons/bs';
 import { FaHandHoldingUsd,FaFileInvoiceDollar,FaBook,FaBookReader} from 'react-icons/fa';
 import { FiUsers} from 'react-icons/fi';
@@ -14,60 +14,61 @@ import logo from '../../images/logo.png'
 
 const Sidebar = (props) =>{
     
+
     return(
         <div className={props.sidebar ? "sidebar active" : "sidebar"}>
             <ul >
                 <li style={{height:'56px'}}>
                     <ButtonMenu click={props.showSidebar}/>
                     <div className="logo">
-                    <a className="text-dark" style={{textDecoration:'none'}}><img src={logo} /></a>
+                    <Link to="/matdid" className="text-dark" style={{textDecoration:'none'}}><img src={logo} alt="" /></Link>
                     </div>
                 </li>
                 <li >
                     
-                    <a href=""><AiOutlineHome className="icons"/>Home</a>
+                    <Link to="/matdid" href="" className="link" style={{textDecoration:'none'}}><AiOutlineHome className="icons"/>Home</Link>
                 </li>
                 <li>
                     <span>ACCIONES</span>
                 </li>
                 <li>
-                    <a href=""><AiOutlineShoppingCart className="icons"/>Compras</a>
+                    <Link to="/Compras" className="link" href="" style={{textDecoration:'none'}}><AiOutlineShoppingCart className="icons"/>Compras</Link>
                 </li>
                 <li>
-                    <a href=""><BsGraphUp className="icons"/>Ventas</a>
+                    <Link to="/Ventas" href="" className="link" style={{textDecoration:'none'}}><BsGraphUp className="icons"/>Ventas</Link>
                 </li>
                 <li>
-                    <a href=""><FaFileInvoiceDollar className="icons"/>Pagos</a>
+                    <Link to="/Pagos" href="" className="link" style={{textDecoration:'none'}}><FaFileInvoiceDollar className="icons"/>Pagos</Link>
                 </li>
                 <li>
-                    <a href=""><FaHandHoldingUsd className="icons"/>Cobros</a>
+                    <Link to="/Cobros" href="" className="link" style={{textDecoration:'none'}}><FaHandHoldingUsd className="icons"/>Cobros</Link>
                 </li>
                 <li>
                     <span>ADMINISTRACION</span>
                 </li>
                 <li>
-                    <a href=""><FiUsers className="icons"/>Usuarios</a>
+                    <Link to="/Usuarios" href="" className="link" style={{textDecoration:'none'}}><FiUsers className="icons"/>Usuarios</Link>
                 </li>
                 <li>
-                    <a href=""><FiUsers className="icons"/>Empleados</a>
+                    <Link to="/Empleados" href="" className="link" style={{textDecoration:'none'}}><FiUsers className="icons"/>Empleados</Link>
                 </li>
                 <li>
-                    <a href=""><FiUsers className="icons"/>Proveedores</a>
+                    <Link to="/Proveedores" href="" className="link" style={{textDecoration:'none'}}><FiUsers className="icons"/>Proveedores</Link>
                 </li>
                 <li>
-                    <a href=""><FaBook className="icons"/>Productos</a>
+                    <Link to="/Productos" href="" className="link" style={{textDecoration:'none'}}><FaBook className="icons"/>Productos</Link>
                 </li>
                 <li>
-                    <a href=""><FaBookReader className="icons"/>Clientes</a>
+                    <Link to="/Clientes" href="" className="link" style={{textDecoration:'none'}}><FaBookReader className="icons"/>Clientes</Link>
                 </li>
                 <li>
                     <span>REPORTES</span>
                 </li>
                 <li>
-                    <a href=""><RiBarChart2Fill className="icons"/>Caja</a>
+                    <Link to="/matdid" href="" className="link" style={{textDecoration:'none'}}><RiBarChart2Fill className="icons"/>Caja</Link>
                 </li>
                 <li>
-                    <a href=""><AiFillShopping className="icons"/>Stock</a>
+                    <Link to="/matdid" href="" className="link" style={{textDecoration:'none'}}><AiFillShopping className="icons"/>Stock</Link>
                 </li>
             </ul>
         </div>
