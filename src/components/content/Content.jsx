@@ -11,7 +11,7 @@ const Content = (props) => {
             <div className="contain_content">
                <h6>{props.title}</h6>
                <div className="table_content">
-                 <Link to="/addCompra"className={"btn btn-primary m-3 " + props.show}>Agregar</Link>
+                 <Link to="/addCompra"className={"btn btn-primary btn-sm m-2 " + props.show}>Agregar</Link>
                   {props.children}
                         
                 </div>

@@ -4,7 +4,7 @@ import ProductFormAdd from './ProductFormAdd';
 import update from 'immutability-helper';
 
 
-const FormCompraVenta = () => {
+const FormCompraVenta = ({proveedores,permisoCarga}) => {
     
     const actualDate = () => {
         let fecha = new Date();
@@ -31,13 +31,17 @@ const FormCompraVenta = () => {
     
     
     
+    console.log("yeye")
     
     const [datos, setDatos] = useState({
-        fecha:actualDate(),
-        accion:'grapefruit',
-        proveedor:'',
+        accion:'compra',
+        proveedor:proveedores[0],
         empleado:'',
     })
+
+    
+
+
 
     const [listaNuevoProducto,setListaNuevoProducto] = useState([0,1,2,3])
     const [keys,setKeys] = useState(4)
@@ -77,6 +81,10 @@ const FormCompraVenta = () => {
 
     }
 
+    const proveedoresList = proveedores.map(proveedor => {
+        return <option key={proveedor.id} value={proveedor.id}>{proveedor.nombre}</option>
+    })
+
 
 
     
@@ -88,22 +96,21 @@ const FormCompraVenta = () => {
                <input 
                type="text" 
                className="form-control text-center"
-               value= {datos.fecha}
+               value= {actualDate()}
                readOnly="readonly"
                />
            </div>
            <div className="col-2">
                 <label className="form-label">Acción</label>
                 <select className="form-control" value={datos.accion} onChange={handleInputChange} name="accion">
-                    <option value="grapefruit">Compra</option>
-                    <option value="lime">Devolución</option>
+                    <option value="compra">Compra</option>
+                    <option value="devolucion">Devolución</option>
                 </select>       
             </div>
             <div className="col-4">
                 <label className="form-label">Proveedor</label>
                 <select className="form-control" value={datos.proveedor} onChange={handleInputChange} name="proveedor">
-                    <option value="grapefruit">...</option>
-                    <option value="lime">...</option>
+                    {proveedoresList}
                 </select>       
             </div>
             <div className="col-4">

@@ -1,36 +1,37 @@
 import React from 'react'
 
-function TableOchoCol() {
+
+
+
+function TableOchoCol(props) {
+    ///<CompraLista compras={props.accion}/>
+
+
+    
+
+    
     return (
         <div className="table-responsive">
             <table className="table">
                 <thead>            
                     <tr>
-                    <th scope="col" className="text-center">#</th>
-                    <th scope="col" className="text-center">Fecha</th>
-                    <th scope="col" className="text-center">Proveedor</th>
-                    <th scope="col" className="text-center">Ciudad</th>
-                    <th scope="col" className="text-center">Encargado/a</th>
-                    <th scope="col" className="text-center">Cantidad</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
+                    <th scope="col">{props.tableHead.primeraColumna}</th>
+                    <th scope="col">{props.tableHead.segundaColumna}</th>
+                    <th scope="col">{props.tableHead.terceraColumna}</th>
+                    <th scope="col">{props.tableHead.cuartaColumna}</th>
+                    <th scope="col">{props.tableHead.quintaColumna}</th>
+                    <th scope="col">{props.tableHead.sextaColumna}</th>
+                    <th scope="col">{props.tableHead.septimaColumna}</th>
+                    <th scope="col">{props.tableHead.octavaColumna}</th>
+                    <th scope="col">{props.tableHead.boton1}</th>
+                    <th scope="col">{props.tableHead.boton2}</th>
+                    
                                      
                     </tr>
+                    
                 </thead>
-                <tbody>
-                    <tr >
-                    <th scope="row" className="align-middle text-center">1</th>
-                    <td className="align-middle text-center">12/13/20</td>
-                    <td className="align-middle text-center">Book Seller</td>
-                    <td className="align-middle text-center"> Caacupe</td>
-                    <td className="align-middle text-center">Aldo Corvalan</td>
-                    <td className="align-middle text-center">15000000</td>
-                    <td><button className="btn btn-warning">Editar</button></td>
-                    <td><button className="btn btn-danger">borrar</button></td>
-                    </tr>
-                    
-                    
-                </tbody>
+                {props.tipo}
+            
             </table>
         </div>
     )
