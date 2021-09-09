@@ -1,4 +1,4 @@
-const baseURL = process.env.REACT_APP_MATDID_URL
+const baseURL = 'https://matdid-back-end.herokuapp.com/'
 
  const fetchMatdid = (endpoint, data, method = 'GET') => {
     const url = `${baseURL}${endpoint}`
