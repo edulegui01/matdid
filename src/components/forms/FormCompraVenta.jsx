@@ -35,7 +35,7 @@ const FormCompraVenta = ({proveedores,permisoCarga}) => {
     
     const [datos, setDatos] = useState({
         accion:'compra',
-        proveedor:proveedores[0],
+        proveedor:'',
         empleado:'',
     })
 
@@ -102,7 +102,7 @@ const FormCompraVenta = ({proveedores,permisoCarga}) => {
            </div>
            <div className="col-2">
                 <label className="form-label">Acción</label>
-                <select className="form-control" value={datos.accion} onChange={handleInputChange} name="accion">
+                <select placeholder="elige la accion" className="form-control" value={datos.accion} onChange={handleInputChange} name="accion">
                     <option value="compra">Compra</option>
                     <option value="devolucion">Devolución</option>
                 </select>       

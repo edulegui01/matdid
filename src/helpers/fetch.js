@@ -2,6 +2,7 @@ const baseURL = process.env.REACT_APP_MATDID_URL
 
  const fetchMatdid = (endpoint, data, method = 'GET') => {
     const url = `${baseURL}${endpoint}`
+    console.log(baseURL)
 
     if (method === 'GET'){
         return fetch(url)

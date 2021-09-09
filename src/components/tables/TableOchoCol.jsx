@@ -23,8 +23,8 @@ function TableOchoCol(props) {
                     <th scope="col">{props.tableHead.sextaColumna}</th>
                     <th scope="col">{props.tableHead.septimaColumna}</th>
                     <th scope="col">{props.tableHead.octavaColumna}</th>
-                    <th scope="col">{props.tableHead.boton1}</th>
                     <th scope="col">{props.tableHead.boton2}</th>
+                    <th scope="col">{props.tableHead.boton1}</th>
                     
                                      
                     </tr>
