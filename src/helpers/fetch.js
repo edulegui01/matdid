@@ -1,4 +1,4 @@
-const baseURL = 'https://matdid-back-end.herokuapp.com/'
+const baseURL = 'https://matdid-back-end.herokuapp.com'
 
  const fetchMatdid = (endpoint, data, method = 'GET') => {
     const url = `${baseURL}${endpoint}`
