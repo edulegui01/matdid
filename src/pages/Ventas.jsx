@@ -3,18 +3,28 @@ import Main from '../components/Main/Main';
 import fetchMatdid from '../helpers/fetch';
 import TableOchoCol from '../components/tables/TableOchoCol';
 import VentaLista from '../components/venta/VentaLista';
+import BaseCompraVenta from '../components/baseCompraVenta/BaseCompraVenta';
+
 
 
 
 const Ventas = () => {
     
     const [ventas, setVentas] = useState({results:[],count:0})
-
-    const [currentPage, setcurrentPage] = useState(1)
+    const [clientes, setClientes] = useState([])
+    const [empleados, setEmpleados] = useState([])
+    const [productos, setProductos] = useState([])
 
     const tableHead = {primeraColumna:'#',segundaColumna:'fecha',terceraColumna:'Nombre',
     cuartaColumna:'Sector',quintaColumna:'Ciudad',sextaColumna:'Encargado',
     septimaColumna:'Tipo',octavaColumna:'Total',boton1:'',boton2:''}
+
+    const accion = {accion1:'venta',accion2:'muestra'}
+
+
+    const handleUpdate = () =>{
+        
+    }
 
     async function fechingListVenta(offset){
         const  response  = await fetchMatdid(`/ventas/ventas/?offset=${offset}`)
@@ -23,22 +33,39 @@ const Ventas = () => {
     }
     useEffect(() =>{
         fechingListVenta();
+        fechingListClientes();
+        fechingListEmpleados();
+        fechingListProductos();
+
     },[])
 
-    const numpage=Math.ceil(ventas.count/6)
-
-    const handlePagination = (page) =>{
-        let offset = page===1 ? 0:(page-1)*6
-        fechingListVenta(offset);
-        setcurrentPage(page);
-
+    async function fechingListClientes(){
+        const  response  = await fetchMatdid(`/cobros/clientes_venta`)
+        const body = await response.json();
+        setClientes(body)
+        
+    }
+    async function fechingListEmpleados(){
+        const  response  = await fetchMatdid(`/empleados/empleados_compra`)
+        const body = await response.json();
+        setEmpleados(body)
+        
+    }
+    
+    async function fechingListProductos(){
+        const  response  = await fetchMatdid(`/productos/productos_compra`)
+        const body = await response.json();
+        setProductos(body)
         
     }
 
+
     
     return ( 
-        <Main title="Ventas" handlePagination={handlePagination} numpage={numpage} currentPage={currentPage}
-        contenido={<TableOchoCol tableHead={tableHead} tipo={<VentaLista ventas ={ventas.results}/>}/>}></Main>
+        <BaseCompraVenta title="Ventas" titleAdd="Agregar Venta" clienteProveedor="Cliente" count={ventas.count} 
+        option1={clientes} option2={empleados} option3={productos} accion={accion}
+        fechingList={fechingListVenta} tipoLista={<VentaLista ventas={ventas.results}></VentaLista>}
+        tableHead={tableHead}/>
      );
 }
 

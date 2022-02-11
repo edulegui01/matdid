@@ -1,20 +1,22 @@
 import React from 'react';
+import confirmDeleteNotification from '../../helpers/alert';
 
 
 
-const CompraFila = (props) =>{
+const CompraFila = ({compra,changeModalState,modalState,setRowOfEdit,handleDelete,index}) =>{
     return(
         <tbody>
             <tr >
-                <th scope="row">{props.compra.id}</th>
-                    <td>{props.compra.fecha}</td>
-                    <td>{props.compra.proveedor}</td>
-                    <td> {props.compra.ciudad}</td>
-                    <td>{props.compra.encargado}</td>
-                    <td>{props.compra.accion}</td>
-                    <td>{props.compra.monto_total}</td>
-                    <td><button className="btn btn-warning btn-sm">Editar</button></td>
-                    <td><button className="btn btn-danger btn-sm">borrar</button></td>
+                <th scope="row">{compra.id}</th>
+                    <td>{compra.fecha}</td>
+                    <td>{compra.proveedor}</td>
+                    <td> {compra.ciudad}</td>
+                    <td>{compra.encargado}</td>
+                    <td>{compra.accion}</td>
+                    <td>{compra.monto_total}</td>
+                    <td><button className="btn btn-warning btn-sm" 
+                     onClick={() => setRowOfEdit(compra)}>Editar</button></td>
+                    <td><button className="btn btn-danger btn-sm" onClick={() =>handleDelete(index)}>borrar</button></td>
             </tr>
                     
                     

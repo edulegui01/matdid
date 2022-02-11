@@ -3,6 +3,8 @@ import Main from '../components/Main/Main';
 import CobroLista from '../components/cobros/CobroLista';
 import fetchMatdid from '../helpers/fetch';
 import TableOchoCol from '../components/tables/TableOchoCol';
+import Content from '../components/content/Content';
+import PagosCobrosForm from '../components/forms/PagosCobrosForm';
 
 
 const Cobros = () => {
@@ -40,9 +42,12 @@ const Cobros = () => {
     }
 
     return ( 
-        <Main title="Cobros" handlePagination={handlePagination}  
-        numpage={numpage} currentPage={currentPage} contenido={<TableOchoCol tableHead={tableHead}
-            tipo={<CobroLista cobros ={cobros.results}/>}/>}></Main>
+        <Main title="Cobros" titleAdd="Agregar Cobro" handlePagination={handlePagination} numpage={numpage} 
+        contenido={<PagosCobrosForm/>}currentPage={currentPage}>
+            <TableOchoCol tableHead={tableHead}>
+                <CobroLista cobros={cobros.results}></CobroLista>
+            </TableOchoCol>
+        </Main>
      );
 }
  

@@ -1,4 +1,5 @@
 import React from 'react'
+import Pagination from '../pagination/Pagination'
 
 
 
@@ -23,14 +24,15 @@ function TableOchoCol(props) {
                     <th scope="col">{props.tableHead.sextaColumna}</th>
                     <th scope="col">{props.tableHead.septimaColumna}</th>
                     <th scope="col">{props.tableHead.octavaColumna}</th>
-                    <th scope="col">{props.tableHead.boton2}</th>
-                    <th scope="col">{props.tableHead.boton1}</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
                     
                                      
                     </tr>
                     
                 </thead>
-                {props.tipo}
+                {props.children}
+                
             
             </table>
         </div>

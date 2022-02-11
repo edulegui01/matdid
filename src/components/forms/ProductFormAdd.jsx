@@ -2,30 +2,32 @@ import React,{Fragment} from 'react'
 
 
 
-const ProductFormAdd = ({listaNuevoProducto,handleInputChange,clearProduct}) => {
+const ProductFormAdd = ({rowsProducts,handleInputChange,handleOnRemove,productos}) => {
+    const productosList = productos.map(producto => <option key={producto.id} value={producto.id}>{producto.nombre}</option>)
     return ( 
-        listaNuevoProducto.map((numberProduct,i) => 
-        <Fragment key={i}>
-            <div className="col-4 mb-1">
-                <select className="form-control" value onChange={handleInputChange} name="producto1">
-                    <option value="grapefruit">..</option>
-                    <option value="lime">..</option>     
+        rowsProducts.map((row,index) => 
+        <Fragment key={index}>
+            <div className="col-3 mb-1">
+                <select className="form-control" value={row.id_producto} onChange={e => handleInputChange(index,e.target.name,e.target.value)} name="id_producto">
+                   <option value="">Seleccione un producto</option>
+                   {productosList}   
                 </select>       
             </div>
+            <div className="col-2 mb-1">
+                <input type="number" name="cantidad" value={row.cantidad} className="form-control" onChange={e => handleInputChange(index,e.target.name,e.target.value)}/>      
+                
+            </div>
+            <div className="col-2 mb-1">
+                <input type="text" name="precio" value={row.precio} readOnly="readonly" className="form-control" onChange={e => handleInputChange(index,e.target.name,e.target.value)}/>      
+            </div>
+            <div className="col-2 mb-1">
+                <input type="text" name="descuento" value={row.descuento!="" ? row.descuento*100:""} className="form-control" onChange={e => handleInputChange(index,e.target.name,e.target.value)}/>      
+            </div>
+            <div className="col-2 mb-1">
+                <input type="text" name="precio_calculado" value={row.precio_calculado} readOnly="readonly" className="form-control" onChange={e => handleInputChange(index,e.target.name,e.target.value)}/>      
+            </div>
             <div className="col-1 mb-1">
-                <input type="text" name="cantidad1" className="form-control " onChange={handleInputChange}/>      
-            </div>
-            <div className="col-2 mb-1">
-                <input type="text" name="precio1" className="form-control" onChange={handleInputChange}/>      
-            </div>
-            <div className="col-2 mb-1">
-                <input type="text" name="descuento1" className="form-control" onChange={handleInputChange}/>      
-            </div>
-            <div className="col-2 mb-1">
-                <input type="text" name="subtotal1" className="form-control" onChange={handleInputChange}/>      
-            </div>
-            <div className="col-1 mb-1">
-                <button className="btn btn-danger" onClick={(e) => clearProduct(e,i)}>borrar</button>      
+                <button className="btn btn-danger" onClick={e =>handleOnRemove(index,e)}>borrar</button>      
             </div>
         </Fragment>
         )

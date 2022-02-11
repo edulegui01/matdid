@@ -3,6 +3,8 @@ import Header from '../header/Header';
 import Sidebar from '../sidebar/Sidebar';
 import Content from '../content/Content';
 import Pagination from '../pagination/Pagination';
+import Lala from '../pagination/Lolo';
+import Modal from '../modal/Modal';
 
 
 const Main = (props) => {
@@ -13,15 +15,22 @@ const Main = (props) => {
         setSidebar(!sidebar);
         setLeft(!left);
     }
+    const [modalState, setModalState] = useState(false)
     
     return ( 
         <div style={{width:'100%',height:'100%'}}>
             <Header click={showSidebar}></Header>
             <Sidebar sidebar={sidebar} showSidebar={showSidebar}></Sidebar>
-            <Content left={left} title={props.title} url={props.url} show={props.show} vista={props.vista}>
-               {props.contenido}
-            </Content>
             <Pagination numpages={props.numpage} handlePagination={props.handlePagination} currentPage={props.currentPage} />
+            <Content left={left} title={props.title} url={props.url} show={props.show} vista={props.vista}
+            setModalState={setModalState} modalState={modalState}>
+               {props.children}
+            </Content>
+            <Modal modalState={modalState} changeModalState={setModalState} titleAdd={props.titleAdd} clienteProveedor ={props.clienteProveedor}>
+                {props.contenido}
+            </Modal>
+            
+            
             
         </div>
      );

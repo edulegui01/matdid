@@ -11,13 +11,14 @@ import Proveedores from './pages/Proveedores'
 import Productos from './pages/Productos'
 import Clientes from './pages/Clientes'
 import AddCompra from './components/add/AddCompra'
-
+import Modal from './components/modal/Modal'
+import Login from './pages/Login'
 
 const Routes = () => {
     return ( 
         <div>
             <Router>
-                <Route exact path="/matdid" component={Home}/>
+                <Route exact path="/" component={Home}/>
                 <Route exact path="/Compras" component={Compras}/>
                 <Route exact path="/Ventas" component={Ventas}/>
                 <Route exact path="/Pagos" component={Pagos}/>
@@ -28,6 +29,8 @@ const Routes = () => {
                 <Route exact path="/Productos" component={Productos}/>
                 <Route exact path="/Clientes" component={Clientes}/>
                 <Route exact path="/addcompra" component={AddCompra}/>
+                <Route exact path="/prueba" component={Modal}/>
+                <Route exact path="/login" component={Login}/>
             </Router>
         </div>
      );

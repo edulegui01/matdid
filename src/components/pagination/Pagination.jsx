@@ -11,11 +11,13 @@ const Pagination = ({numpages,handlePagination,currentPage}) => {
     
 
     return (
-        <nav  className="lol">
+        <nav className="lol">
             <ul className="pagination">
                 {pagesLinks}
             </ul>
         </nav>
+        
+        
     )
 }
 

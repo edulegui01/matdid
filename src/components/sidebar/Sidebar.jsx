@@ -21,12 +21,12 @@ const Sidebar = (props) =>{
                 <li style={{height:'56px'}}>
                     <ButtonMenu click={props.showSidebar}/>
                     <div className="logo">
-                    <Link to="/matdid" className="text-dark" style={{textDecoration:'none'}}><img src={logo} alt="" /></Link>
+                    <Link to="/" className="text-dark" style={{textDecoration:'none'}}><img src={logo} alt="" /></Link>
                     </div>
                 </li>
                 <li >
                     
-                    <Link to="/matdid" href="" className="link" style={{textDecoration:'none'}}><AiOutlineHome className="icons"/>Home</Link>
+                    <Link to="/" href="" className="link" style={{textDecoration:'none'}}><AiOutlineHome className="icons"/>Home</Link>
                 </li>
                 <li>
                     <span>ACCIONES</span>

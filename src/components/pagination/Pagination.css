@@ -1,6 +1,8 @@
 .lol{
     position:fixed;
-    left: 75%;
+    left: 70%;
     top:88%;
     background-color: transparent;
+    z-index: 1;
+
 }

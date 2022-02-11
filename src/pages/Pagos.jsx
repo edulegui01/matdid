@@ -3,6 +3,7 @@ import Main from '../components/Main/Main';
 import TableOchoCol from '../components/tables/TableOchoCol';
 import fetchMatdid from '../helpers/fetch';
 import PagosLista from '../components/pagos/PagosLista';
+import PagosCobrosForm from '../components/forms/PagosCobrosForm';
 
 
 
@@ -36,9 +37,11 @@ const Pagos = () => {
     }
 
     return ( 
-        <Main title="Pagos" handlePagination={handlePagination}  
-        numpage={numpage} currentPage={currentPage} contenido={<TableOchoCol tableHead={tableHead}
-        tipo={<PagosLista pagos ={pagos.results}/>}/>}>
+        <Main title="Pago" titleAdd="Agregar Pago" handlePagination={handlePagination} numpage={numpage} 
+        contenido={<PagosCobrosForm/>} currentPage={currentPage}>
+            <TableOchoCol tableHead={tableHead}>
+                <PagosLista pagos={pagos.results}></PagosLista>
+            </TableOchoCol>
         </Main>
      );
 }
