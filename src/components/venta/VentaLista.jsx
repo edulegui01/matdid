@@ -2,9 +2,10 @@ import React from 'react';
 import VentaFila from './VentaFila'
 
 
-const CompraLista = (props) =>{
+const CompraLista = ({ventas,handleEdit, modalState,changeModalState,handleDelete}) =>{
     return(
-        props.ventas.map(venta => <VentaFila venta={venta}/>)
+        ventas.map((venta,index) => <VentaFila venta={venta} handleEdit={handleEdit} 
+        modalState={modalState} changeModalState={changeModalState} handleDelete={handleDelete} index={index} />)
     )
 }
 

@@ -1,17 +1,18 @@
 import React from 'react'
 import { useState, useRef, useEffect} from 'react';
 import ProductFormAdd from './ProductFormAdd';
-import fetchMatdid from '../../helpers/fetch';
-import { notification } from '../../helpers/alert';
+import customFetcher from '../../helpers/fetch';
+import { notification, notification1 } from '../../helpers/alert';
 
 
-const FormCompraVenta = ({option1,option2,option3,clienteProveedor,accion}) => {
-
+const FormCompraVenta = ({option1,option2,option3,clienteProveedor,accion,rowOfEdit=null,flag,detalleToEdit,idCompra}) => {
     useEffect(() =>{
         fechingListProductos();
+        
     },[])
 
-    console.log(accion)
+    console.log(detalleToEdit)
+
     const actualDate = () => {
         let fecha = new Date();
 
@@ -38,6 +39,17 @@ const FormCompraVenta = ({option1,option2,option3,clienteProveedor,accion}) => {
     
     const [datosCompra, setDatosCompra] = useState({accion:accion.accion1,id_proveedor:"",id_empleado:'',monto_total:''})
     const [productos, setProductos] = useState([])
+    
+    useEffect(() =>{
+        
+        if (rowOfEdit !== null){
+            setDatosCompra(rowOfEdit)
+            setRowsProducts(detalleToEdit)
+
+        }
+        
+    },[rowOfEdit,detalleToEdit])    
+    
 
     const initialState = {id_producto:'',cantidad:'',precio:'',descuento:'',precio_calculado:''}
     
@@ -53,15 +65,16 @@ const FormCompraVenta = ({option1,option2,option3,clienteProveedor,accion}) => {
     const divRefProveedores = useRef()
     const divRefEmpleados = useRef()
     const errorMessageProductos = useRef()
+
     
 
 
 
 
     async function fechingListProductos(){
-        const  response  = await fetchMatdid(`/productos/productos_compra`)
-        const body = await response.json();
-        setProductos(body)
+        const  {response,data}  = await customFetcher(`/productos/productos_compra`)
+        //const body = await response.json();
+        setProductos(data)
 
     }
     
@@ -174,18 +187,46 @@ const FormCompraVenta = ({option1,option2,option3,clienteProveedor,accion}) => {
     const handleOnRemove = (index,e) =>{
         e.preventDefault()
         const copyRowsProducts = [...rowsProducts]
+        console.log(copyRowsProducts)
+        console.log(datosCompra)
         setDatosCompra({
             ...datosCompra,
-            monto_total:datosCompra.monto_total-copyRowsProducts[index].precio_compra
+            monto_total:datosCompra.monto_total-copyRowsProducts[index].precio_calculado
         })
         copyRowsProducts.splice(index,1)
         setRowsProducts(copyRowsProducts)
     }
 
+    const optionsList = (optionIterable,isEmple=false) => optionIterable.map(proveedor => {
+        let proveOrEmple = datosCompra.id_proveedor
 
-    const optionsList = (optionIterable) => optionIterable.map(proveedor => {
-        return <option key={proveedor.id} value={proveedor.id}>{proveedor.nombre}</option>
+        if(isEmple){
+            proveOrEmple = datosCompra.id_empleado
+        }
+
+        
+        if(rowOfEdit){
+            if(proveOrEmple === proveedor.id){
+                return <option selected key={proveedor.id} value={proveedor.id}>{proveedor.nombre}</option>
+            }else{
+                return <option key={proveedor.id} value={proveedor.id}>{proveedor.nombre}</option>
+            }
+                    
+        }else{
+            return <option key={proveedor.id} value={proveedor.id}>{proveedor.nombre}</option>
+            
+        }
+                
+
+
     })
+
+
+    
+       
+
+
+    
 
 
     const handleOnConfirm = () =>{
@@ -201,7 +242,7 @@ const FormCompraVenta = ({option1,option2,option3,clienteProveedor,accion}) => {
         }
         
         let copyRowsProducts = [...rowsProducts]
-        console.log(copyRowsProducts)
+       
 
         copyRowsProducts = copyRowsProducts.filter(producto => producto.id_producto!=="" || producto.cantidad!=="")
         //console.log(copyRowsProducts)
@@ -252,24 +293,62 @@ const FormCompraVenta = ({option1,option2,option3,clienteProveedor,accion}) => {
 
     async function fechingPostCompra(datosCompra){
         let response = ''
+        
+        
 
         if (datosCompra.accion === 'compra' || datosCompra.accion === 'devolucion'){
-            response = await fetchMatdid(`/compras/compras/`,datosCompra,'POST')
+            
+            if (rowOfEdit){
+                response = await customFetcher(`/compras/update_compra/${idCompra}/`,datosCompra,'PUT')
+                
+            }
+            else{
+                response = await customFetcher(`/compras/compras/`,datosCompra,'POST')
+
+            }
 
         }else if(datosCompra.accion === 'venta' || datosCompra.accion === 'muestra'){
-            response = await fetchMatdid(`/ventas/ventas/`,datosCompra,'POST')
+            
+                response = await customFetcher(`/ventas/ventas/`,{
+                    method: 'POST',
+                    headers:{
+                        'Content-Type':'application/json'
+                    },
+                    body: JSON.stringify(datosCompra)
+                })
+
+                console.log(response.data)
+                
+
+           
         }
         
         
-        const body = await response.json();
-        console.log(body)
+        console.log(response)
 
-        if (response.status == 201 || response.status == 200 ){
-            notification('Exito',body.message,'success')
+        if (response.response.status == 201 || response.response.status == 200 ){
+            await notification('Exito',response.data.message,'success')
+            if (response.data.message_alert){
+                for (var i=0;i<response.data.message_alert.length;i++){
+                    await notification('Atención',response.data.message_alert[i],'warning')
+                }
+            }
+        }else{
+            await notification('Error',response.data.message,'error')
         }
 
         
+       
         
+        
+    }
+
+    const optionAddOrEdit = () =>{
+        /*if(rowOfEdit){
+           return <option selected value={datosCompra.id_proveedor}>{compraToEdit.proveedor}</option>
+        }else{
+            return <option selected value="">Seleccione un Proveedor</option>
+        }*/
     }
 
 
@@ -278,7 +357,7 @@ const FormCompraVenta = ({option1,option2,option3,clienteProveedor,accion}) => {
     
     return ( 
        <form className="form-row m-2">
-           <div className="col-2 ">
+           <div className={rowOfEdit!==null ? "col-2 d-none":"col-2"}>
                <label className="form-label ">Fecha</label>
                <input 
                type="text" 
@@ -287,7 +366,7 @@ const FormCompraVenta = ({option1,option2,option3,clienteProveedor,accion}) => {
                readOnly="readonly"
                />
            </div>
-           <div className="col-2">
+           <div className={rowOfEdit!==null ?"col-4":"col-2"}>
                 <label className="form-label">Acción</label>
                 <select placeholder="elige la accion" className="form-control " 
                 value={datosCompra.accion}  onChange={e =>handleInputChange(undefined,e.target.name,e.target.value)} name="accion">
@@ -298,17 +377,18 @@ const FormCompraVenta = ({option1,option2,option3,clienteProveedor,accion}) => {
             </div>
             <div className="col-4" ref={divRefProveedores}>
                 <label className="form-label">{clienteProveedor}</label>
-                <select className="form-control" required  value={datosCompra.proveedor} id="id_select_proveedor" onChange={e =>handleInputChange(undefined,e.target.name,e.target.value)} name="id_proveedor">
-                    <option value="">Seleccione un {clienteProveedor}</option>
+                <select className="form-control" required   id="id_select_proveedor" onChange={e =>handleInputChange(undefined,e.target.name,e.target.value)} name="id_proveedor">
+                    <option className={rowOfEdit ? "d-none":""} value="">Seleccione el {clienteProveedor}</option>
                     {optionsList(option1)}
+                    
                 </select>
                 <small className="text-danger pl-1 d-none" id="id_proveedor">Seleccione un proveedor</small>          
             </div>
             <div className="col-4" ref={divRefEmpleados}>
                 <label className="form-label">Empleado</label>
                 <select className="form-control" value={datosCompra.empleado} id="id_select_empleados" onChange={e =>handleInputChange(undefined,e.target.name,e.target.value)} name="id_empleado">
-                    <option value="">Seleccione un empleado</option>
-                    {optionsList(option2)}
+                    <option className={rowOfEdit ? "d-none":""} value="">Seleccione el Empleado</option>
+                    {optionsList(option2,true)}
                 </select>  
                 <small className="text-danger pl-1 d-none"  id="id_empleados">Seleccione un empleado</small>      
             </div>

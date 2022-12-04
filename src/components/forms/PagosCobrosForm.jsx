@@ -13,25 +13,26 @@ const PagosCobrosForm = () => {
                 <label>Cliente</label>
                 <input type="text" className="form-control"/>
             </div>
-            <div className="form-group col-4">
+            <div className="form-group col-6">
                 <label>Empleado</label>
                 <input type="text" className="form-control"/>
             </div>
-            <div className="form-group col-4">
+            <div className="form-group col-6">
                 <label>Cuenta</label>
                 <input type="text" className="form-control"/>
             </div>
-            <div className="form-group col-4">
+            <div className="form-group col-6">
                 <label>Forma de pago</label>
                 <input type="text" className="form-control"/>
             </div>
-            <div className="form-group col-6">
-                <label>Comentario</label>
-                <textarea name="comentario"className="form-control" id="" cols="10" rows="5"></textarea>
-            </div>
+            
             <div className="form-group col-6">
                 <label>Cantidad</label>
                 <input type="text" className="form-control"/>
+            </div>
+            <div className="form-group col-12">
+                <label>Comentario</label>
+                <textarea name="comentario"className="form-control" id="" cols="10" rows="5"></textarea>
             </div>
             
         </form>

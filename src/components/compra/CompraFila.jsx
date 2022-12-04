@@ -3,7 +3,7 @@ import confirmDeleteNotification from '../../helpers/alert';
 
 
 
-const CompraFila = ({compra,changeModalState,modalState,setRowOfEdit,handleDelete,index}) =>{
+const CompraFila = ({compra,changeModalState,modalState,handleEdit,handleDelete,index}) =>{
     return(
         <tbody>
             <tr >
@@ -15,7 +15,7 @@ const CompraFila = ({compra,changeModalState,modalState,setRowOfEdit,handleDelet
                     <td>{compra.accion}</td>
                     <td>{compra.monto_total}</td>
                     <td><button className="btn btn-warning btn-sm" 
-                     onClick={() => setRowOfEdit(compra)}>Editar</button></td>
+                     onClick={() => handleEdit(compra)}>Editar</button></td>
                     <td><button className="btn btn-danger btn-sm" onClick={() =>handleDelete(index)}>borrar</button></td>
             </tr>
                     

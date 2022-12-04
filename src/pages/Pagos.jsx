@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from 'react';
 import Main from '../components/Main/Main';
 import TableOchoCol from '../components/tables/TableOchoCol';
-import fetchMatdid from '../helpers/fetch';
+import customFetcher from '../helpers/fetch';
 import PagosLista from '../components/pagos/PagosLista';
 import PagosCobrosForm from '../components/forms/PagosCobrosForm';
 
@@ -14,9 +14,9 @@ const Pagos = () => {
     const [currentPage, setcurrentPage] = useState(1)
 
     async function fechingListPagos(offset){
-        const  response  = await fetchMatdid(`/proveedores/proveedores/?offset=${offset}`)
-        const body = await response.json();
-        setPagos(body)
+        const  {response,data}  = await customFetcher(`/proveedores/proveedores/?offset=${offset}`)
+        //const body = await response.json();
+        setPagos(data)
     }
 
     useEffect(() =>{
@@ -37,7 +37,7 @@ const Pagos = () => {
     }
 
     return ( 
-        <Main title="Pago" titleAdd="Agregar Pago" handlePagination={handlePagination} numpage={numpage} 
+        <Main title="Pago" titleAdd="Agregar Pago" maximun_with="20px" handlePagination={handlePagination} numpage={numpage} 
         contenido={<PagosCobrosForm/>} currentPage={currentPage}>
             <TableOchoCol tableHead={tableHead}>
                 <PagosLista pagos={pagos.results}></PagosLista>

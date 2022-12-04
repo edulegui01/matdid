@@ -1,10 +1,10 @@
 import React from 'react';
-import Main from '../components/Main/Main';
+import HomeView from '../components/HomeView/HomeView';
 
 const Home = (props) => {
 
     return ( 
-        <Main></Main>
+        <HomeView></HomeView>
     );
 }
  

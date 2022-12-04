@@ -22,11 +22,11 @@ const Main = (props) => {
             <Header click={showSidebar}></Header>
             <Sidebar sidebar={sidebar} showSidebar={showSidebar}></Sidebar>
             <Pagination numpages={props.numpage} handlePagination={props.handlePagination} currentPage={props.currentPage} />
-            <Content left={left} title={props.title} url={props.url} show={props.show} vista={props.vista}
+            <Content left={left} title={props.title} url={props.url} show={props.show} vista={props.vista} isHome={props.isHome}
             setModalState={setModalState} modalState={modalState}>
                {props.children}
             </Content>
-            <Modal modalState={modalState} changeModalState={setModalState} titleAdd={props.titleAdd} clienteProveedor ={props.clienteProveedor}>
+            <Modal modalState={modalState} changeModalState={setModalState} maximun_with={props.maximun_with} titleAdd={props.titleAdd} clienteProveedor ={props.clienteProveedor}>
                 {props.contenido}
             </Modal>
             

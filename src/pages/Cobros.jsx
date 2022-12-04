@@ -1,7 +1,7 @@
 import React,{useEffect,useState} from 'react';
 import Main from '../components/Main/Main';
 import CobroLista from '../components/cobros/CobroLista';
-import fetchMatdid from '../helpers/fetch';
+import customFetcher from '../helpers/fetch';
 import TableOchoCol from '../components/tables/TableOchoCol';
 import Content from '../components/content/Content';
 import PagosCobrosForm from '../components/forms/PagosCobrosForm';
@@ -16,9 +16,9 @@ const Cobros = () => {
     const [currentPage, setcurrentPage] = useState(1)
 
     async function fechingListCobros(offset){
-        const  response  = await fetchMatdid(`/cobros/cobros/?offset=${offset}`)
-        const body = await response.json();
-        setCobros(body)
+        const  {response,data}  = await customFetcher(`/cobros/cobros/?offset=${offset}`)
+        //const body = await response.json();
+        setCobros(data)
     }
 
     useEffect(() =>{

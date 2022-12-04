@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import Main from '../components/Main/Main';
-import fetchMatdid from '../helpers/fetch';
+import customFetcher from '../helpers/fetch';
 import TableOchoCol from '../components/tables/TableOchoCol';
 import CompraLista from '../components/compra/Compralista';
 import Content from '../components/content/Content';
@@ -20,6 +20,13 @@ import {confirmDeleteNotification,notification} from '../helpers/alert';
 const Compras = () => {
     
     const [compras,setCompras] = useState({results:[],count:0})
+
+    const config = {
+        method: 'GET',
+        headers:{
+            'Content-Type':'application/json'
+        }
+    }
     
 
 
@@ -27,9 +34,15 @@ const Compras = () => {
     //const [currentPage, setcurrentPage] = useState(1)
 
     async function fechingListCompra(offset){
-        const  response  = await fetchMatdid(`/compras/compras/?offset=${offset}`)
-        const body = await response.json();
-        setCompras(body)
+        try{
+            const {response,data}  = await customFetcher(`/compras/compras/?offset=${offset}`,config)
+            console.log(response.data)
+            setCompras(data)
+        }catch(error){
+            console.log(error)
+        }
+        
+        
     }
 
     useEffect(() =>{
@@ -66,31 +79,40 @@ const Compras = () => {
     const [empleados, setEmpleados] = useState([])
     const [productos, setProductos] = useState([])
     const [modalState, setModalState] = useState(false)
-    const [rowOfEdit, setRowOfEdit] = useState()
+    const [rowOfEdit, setRowOfEdit] = useState(null)
+    const [detalleToEdit,setDetalleToEdit] = useState([{sfsadf:"fasdfsda"}])
+    const [idCompra,setIdCompra] = useState()
     
     
     const costoProduct = {}
     
-    productos.forEach(producto => costoProduct[producto.id]=producto.costo)
+    try{
+        productos.forEach(producto => costoProduct[producto.id]=producto.costo)
+
+    }catch(error){
+
+    }
 
     //let contenido=<FormCompraVenta option1={proveedores} 
     //accion={accion} option2={empleados} option3={productos} clienteProveedor="Proveedor"/>
 
-    const [contenido,setContenido] = useState(<FormCompraVenta option1={proveedores} 
-        accion={accion} option2={empleados} option3={productos} clienteProveedor="Proveedor"/>
-    )
+
+
 
     const handleEdit = (compra) => {
         setModalState(!modalState)
-        setRowOfEdit(compra)
+        fechingRowToEdit(compra)
+        fechingDetalleCompraToEdit(compra)
+
+        
         
     }
 
     async function fechingDeleteCompra(idCompraToDelete){
-        const response = await fetchMatdid(`/compras/compras/${idCompraToDelete}`,null,'DELETE')
-        const body = await response.json()
-        console.log(body)
-        notification('Eliminada',body.mensaje,'success')
+        const {response,data} = await customFetcher(`/compras/compras/${idCompraToDelete}`,null,'DELETE')
+        //const body = await response.json()
+        //console.log(body)
+        notification('Eliminada',data.mensaje,'success')
 
     }
 
@@ -110,25 +132,44 @@ const Compras = () => {
         
     }
 
+
+    async function fechingRowToEdit(compra){
+        const {responseCompra,data} = await customFetcher(`/compras/compras_edit/${compra.id}`)
+        //const bodyCompra = await responseCompra.json()
+        setRowOfEdit(data)
+        setIdCompra(compra.id)
+
+        //const responseDetalleCompra = await fetchMatdid()
+
+
+    }
+
+    async function fechingDetalleCompraToEdit(compra){
+        const {responseDetalleCompra,data} = await customFetcher(`/compras/detalle_compra_edit/${compra.id}`)
+        //const bodyDetalleCompra = await responseDetalleCompra.json()
+        setDetalleToEdit(data)
+    }
+
+
     
     async function fechingListProveedores(){
-        const  response  = await fetchMatdid(`/proveedores/proveedores_compra`)
-        const body = await response.json();
-        setProveedores(body)
+        const  {response,data}  = await customFetcher(`/proveedores/proveedores_compra`)
+        //const body = await response.json();
+        setProveedores(data)
         
     }
     
     async function fechingListEmpleados(){
-        const  response  = await fetchMatdid(`/empleados/empleados_compra`)
-        const body = await response.json();
-        setEmpleados(body)
+        const  {response,data}  = await customFetcher(`/empleados/empleados_compra`)
+        //const body = await response.json();
+        setEmpleados(data)
         
     }
     
     async function fechingListProductos(){
-        const  response  = await fetchMatdid(`/productos/productos_compra`)
-        const body = await response.json();
-        setProductos(body)
+        const  {response,data}  = await customFetcher(`/productos/productos_compra`)
+        //const body = await response.json();
+        setProductos(data)
 
         
 
@@ -138,13 +179,16 @@ const Compras = () => {
     
     return ( 
         <>
-            <BaseCompraVenta title="Compras" titleAdd="Agregar Compra" clienteProveedor="Proveedor" 
-            count={compras.count} contenido={<FormCompraVenta option1={proveedores} accion={accion} option2={empleados} option3={productos} clienteProveedor="Proveedor"/>} accion={accion}
+            <BaseCompraVenta title="Compras" titleAdd="Agregar Compra" clienteProveedor="Proveedor" maximun_with="1000px"
+            count={compras.count} contenido={<FormCompraVenta option1={proveedores} accion={accion} option2={empleados} option3={productos} clienteProveedor="Proveedor" />} accion={accion}
             fechingList={fechingListCompra} tipoLista={<CompraLista compras={compras.results} modalState={modalState}
-            changeModalState={setModalState} setRowOfEdit={handleEdit} handleDelete={handleDelete}></CompraLista>}
+            changeModalState={setModalState} handleEdit={handleEdit} handleDelete={handleDelete}></CompraLista>}
             tableHead={tableHead}/>
             <EditContent modalState={modalState} changeModalState={setModalState} titleAdd="Editar"
-            editCompras={<FormCompraVenta option1={proveedores} accion={accion} option2={empleados} option3={productos} clienteProveedor="Proveedor"/>}/>
+            editForm={<FormCompraVenta option1={proveedores} accion={accion} 
+            option2={empleados} option3={productos} 
+            clienteProveedor="Proveedor" rowOfEdit={rowOfEdit} detalleToEdit={detalleToEdit} idCompra={idCompra}
+            flag={true}/>}/>
         </>
 
      );

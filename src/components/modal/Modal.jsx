@@ -2,13 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 import {AiOutlineClose} from 'react-icons/ai'
 
-const Modal = ({modalState =true,changeModalState,children,titleAdd}) => {
+const Modal = ({modalState =true,changeModalState,children,titleAdd,maximun_with}) => {
     return ( 
         
         <>
             {modalState && 
                 <Overlay>
-                    <ContainerModal>
+                    <ContainerModal maximun_with={maximun_with}>
                         <ContainerTitle><h3>{titleAdd}</h3></ContainerTitle>
                         <ButtonClose onClick={()=>changeModalState(false)}><AiOutlineClose size='25px'></AiOutlineClose></ButtonClose>
                         {children}
@@ -36,10 +36,11 @@ const Overlay = styled.div`
     z-index:10;
 
 `;
-
+//max-width:1000px;
 const ContainerModal = styled.div`
     max-width:1000px;
     min-width:500px;
+    max_height:200px;
     min-height:100px;
     background: #fff;
     position:relative;

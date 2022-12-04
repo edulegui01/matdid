@@ -1,7 +1,7 @@
 import React, { useEffect,useState } from 'react';
 import Main from '../Main/Main';
 import FormCompraVenta from '../forms/FormCompraVenta';
-import fetchMatdid from '../../helpers/fetch';
+import customFetcher from '../../helpers/fetch';
 
 
 
@@ -14,21 +14,21 @@ const AddCompra = () => {
     
     
     async function fechingListProveedores(){
-        const  response  = await fetchMatdid(`/proveedores/proveedores_compra`)
+        const  response  = await customFetcher(`/proveedores/proveedores_compra`)
         const body = await response.json();
         setProveedores(body)
         
     }
     
     async function fechingListEmpleados(){
-        const  response  = await fetchMatdid(`/empleados/empleados_compra`)
+        const  response  = await customFetcher(`/empleados/empleados_compra`)
         const body = await response.json();
         setEmpleados(body)
         
     }
     
     async function fechingListProductos(){
-        const  response  = await fetchMatdid(`/productos/productos_compra`)
+        const  response  = await customFetcher(`/productos/productos_compra`)
         const body = await response.json();
         setProductos(body)
         

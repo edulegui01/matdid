@@ -4,5 +4,6 @@
     top:88%;
     background-color: transparent;
     z-index: 1;
+    display: flex;
 
 }

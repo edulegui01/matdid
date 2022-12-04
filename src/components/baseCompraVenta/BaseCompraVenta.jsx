@@ -9,7 +9,7 @@ import FormCompraVenta from '../forms/FormCompraVenta';
 
 
 const BaseCompraVenta = ({count,fechingList,tipoLista,option1,contenido,
-    option2,option3,tableHead,title,titleAdd,clienteProveedor,accion}) => {
+    option2,option3,tableHead,title,titleAdd,clienteProveedor,accion, maximun_with}) => {
                                        
     const [currentPage, setcurrentPage] = useState(1)
     /*let contenido=<FormCompraVenta option1={option1} 
@@ -20,6 +20,7 @@ const BaseCompraVenta = ({count,fechingList,tipoLista,option1,contenido,
     
 
     const handlePagination = (page) =>{
+        console.log(page)
         let offset = page===1 ? 0:(page-1)*6
         fechingList(offset);
         setcurrentPage(page);
@@ -35,7 +36,7 @@ const BaseCompraVenta = ({count,fechingList,tipoLista,option1,contenido,
     
     return ( 
         <Main title={title} titleAdd={titleAdd} handlePagination={handlePagination} numpage={numpage} 
-        currentPage={currentPage} contenido={contenido} >
+        currentPage={currentPage} contenido={contenido} maximun_with={maximun_with} >
             <TableOchoCol tableHead={tableHead}>
                 {tipoLista}
             </TableOchoCol>

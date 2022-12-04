@@ -26,7 +26,7 @@ const Sidebar = (props) =>{
                 </li>
                 <li >
                     
-                    <Link to="/" href="" className="link" style={{textDecoration:'none'}}><AiOutlineHome className="icons"/>Home</Link>
+                    <Link to="/home" href="" className="link" style={{textDecoration:'none'}}><AiOutlineHome className="icons"/>Home</Link>
                 </li>
                 <li>
                     <span>ACCIONES</span>
@@ -46,9 +46,7 @@ const Sidebar = (props) =>{
                 <li>
                     <span>ADMINISTRACION</span>
                 </li>
-                <li>
-                    <Link to="/Usuarios" href="" className="link" style={{textDecoration:'none'}}><FiUsers className="icons"/>Usuarios</Link>
-                </li>
+                
                 <li>
                     <Link to="/Empleados" href="" className="link" style={{textDecoration:'none'}}><FiUsers className="icons"/>Empleados</Link>
                 </li>
@@ -65,10 +63,10 @@ const Sidebar = (props) =>{
                     <span>REPORTES</span>
                 </li>
                 <li>
-                    <Link to="/matdid" href="" className="link" style={{textDecoration:'none'}}><RiBarChart2Fill className="icons"/>Caja</Link>
+                    <Link to="/" href="" className="link" style={{textDecoration:'none'}}><RiBarChart2Fill className="icons"/>Caja</Link>
                 </li>
                 <li>
-                    <Link to="/matdid" href="" className="link" style={{textDecoration:'none'}}><AiFillShopping className="icons"/>Stock</Link>
+                    <Link to="/" href="" className="link" style={{textDecoration:'none'}}><AiFillShopping className="icons"/>Stock</Link>
                 </li>
             </ul>
         </div>

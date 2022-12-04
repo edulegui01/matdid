@@ -4,11 +4,11 @@ import Modal from '../modal/Modal';
 import EditForm from './EditFormCompra';
 
 
-const EditContent = ({modalState,changeModalState,titleAdd,editCompras}) => {
+const EditContent = ({modalState,changeModalState,titleAdd,editForm}) => {
     
     return (
        <Modal modalState={modalState} changeModalState={changeModalState} titleAdd={titleAdd}>
-           {editCompras}
+           {editForm}
        </Modal>
     );
 }
